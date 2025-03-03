@@ -1,0 +1,3 @@
+gettings anywhere between 20-50ms inference times.
+Ive acheived accuracy over 99% by asking chatgpt to change my FFNN into a RNN
+using gpt model o3-mini-high
