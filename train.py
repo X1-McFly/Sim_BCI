@@ -10,9 +10,10 @@ from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 import joblib  # for saving the scaler
+import seaborn as sns
 
 # Load the cleaned data.
-df = pd.read_csv('cleaned_data.csv')
+df = pd.read_csv("data/Atit(all)/final_data.csv")
 print("Columns in the dataset:", df.columns.tolist())
 
 # Reclassify steering into 5 classes using new thresholds.
@@ -36,8 +37,6 @@ df = df[df['Steering_Classification'] != 2]
 print("After removing Centered samples:", collections.Counter(df['Steering_Classification']))
 
 # Remap remaining classes to a binary range:
-# Hard Left (0) and Slight Left (1) become 0 (Left), and
-# Slight Right (3) and Hard Right (4) become 1 (Right).
 def remap_class(x):
     if x in [0, 1]:
         return 0  # Left
@@ -56,7 +55,7 @@ fft_cols = [
 ]
 for col in fft_cols:
     if col not in df.columns:
-        raise ValueError(f"{col} not found in cleaned_data.csv. Please ensure the FFT computation was successful.")
+        raise ValueError(f"{col} not found in final_data.csv. Please ensure the FFT computation was successful.")
 
 # Use only EEG and FFT columns as features.
 feature_cols = eeg_cols + fft_cols
@@ -95,26 +94,34 @@ X_test_reshaped = X_test.reshape(-1, num_features)
 X_test_scaled = scaler.transform(X_test_reshaped)
 X_test = X_test_scaled.reshape(num_test_samples, seq_len, num_features)
 
-# Build the RNN model with an initial Conv1D block and LayerNormalization.
-model = Sequential([
-    # Convolution block to capture local temporal patterns.
-    Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(seq_len, num_features)),
-    LayerNormalization(),
-    Dropout(0.1),
-    
-    # Recurrent layers.
-    LSTM(128, return_sequences=True),
-    Dropout(0.1),
-    LSTM(128),
-    Dropout(0.1),
-    
-    Dense(128, activation='relu'),
-    Dropout(0.1),
-    Dense(64, activation='relu'),
-    Dropout(0.1),
-    Dense(2, activation='softmax')  # 2 classes: 0=Left, 1=Right.
-])
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+# Check available GPUs
+print("Available GPUs:", tf.config.list_physical_devices('GPU'))
+
+# Create a distribution strategy for GPUs.
+strategy = tf.distribute.MirroredStrategy()
+print("Number of devices:", strategy.num_replicas_in_sync)
+
+# Build the model within the strategy scope.
+with strategy.scope():
+    model = Sequential([
+        # Convolution block to capture local temporal patterns.
+        Conv1D(filters=32, kernel_size=3, activation='relu', input_shape=(seq_len, num_features)),
+        LayerNormalization(),
+        Dropout(0.1),
+        
+        # Recurrent layers.
+        LSTM(128, return_sequences=True),
+        Dropout(0.1),
+        LSTM(128),
+        Dropout(0.1),
+        
+        Dense(128, activation='relu'),
+        Dropout(0.1),
+        Dense(64, activation='relu'),
+        Dropout(0.1),
+        Dense(2, activation='softmax')  # 2 classes: 0=Left, 1=Right.
+    ])
+    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 model.summary()
 
 # Setup callbacks.
@@ -146,8 +153,6 @@ print("Test Accuracy:", test_acc)
 # Optionally, plot the confusion matrix.
 predictions = model.predict(X_test)
 predicted_classes = np.argmax(predictions, axis=1)
-from sklearn.metrics import confusion_matrix
-import seaborn as sns
 conf_matrix = confusion_matrix(y_test, predicted_classes)
 display_labels = ['Left', 'Right']
 plt.figure(figsize=(8, 6))

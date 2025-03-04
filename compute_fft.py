@@ -14,7 +14,7 @@ def compute_fft():
     gamma_band = (30, 100) # Gamma: 30–100 Hz
 
     # Load the cleaned data (make sure cleaned_data.csv is in your working directory)
-    df = pd.read_csv('merged_data.csv')
+    df = pd.read_csv('data/Atit(all)/merged_data.csv')
     print("Data loaded. Total rows:", len(df))
 
     # Ensure that the FFT columns exist (initialize if missing)
@@ -109,3 +109,6 @@ def compute_fft():
     # Save the updated DataFrame back to cleaned_data.csv.
     df.to_csv('final_data.csv', index=False)
     print("Updated final_data.csv with computed Alpha, Beta, and Gamma FFT columns.")
+
+if __name__ == "__main__":
+          compute_fft()
