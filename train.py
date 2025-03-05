@@ -12,8 +12,10 @@ from sklearn.metrics import confusion_matrix
 import joblib  # for saving the scaler
 import seaborn as sns
 
+file_path = 'data/Atit(all)/'
+
 # Load the cleaned data.
-df = pd.read_csv("data/Atit(all)/final_data.csv")
+df = pd.read_csv(f"{file_path}final_data.csv")
 print("Columns in the dataset:", df.columns.tolist())
 
 # Reclassify steering into 5 classes using new thresholds.
@@ -163,6 +165,7 @@ plt.title("Confusion Matrix (Binary Classification: Left vs Right)")
 plt.show()
 
 # Save the trained model and scaler.
-model.save('rnn_model.h5')
-joblib.dump(scaler, 'scaler.save')
+model_path = 'models/model_v0.4/'
+model.save(f'{model_path}rnn_model.h5')
+joblib.dump(scaler, f'{model_path}scaler.save')
 print("Model and scaler saved.")

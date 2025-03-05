@@ -3,12 +3,14 @@ import numpy as np
 import joblib
 import tensorflow as tf
 
+file_path = 'data/Atit(all)/'
+
 # Load saved model and scaler.
 model = tf.keras.models.load_model('rnn_model.h5')
 scaler = joblib.load('scaler.save')
 
 # Load cleaned data.
-df = pd.read_csv('data/Atit(all)/final_data.csv')
+df = pd.read_csv(f'{file_path}final_data.csv')
 print("Columns in the dataset:", df.columns.tolist())
 
 # Function to classify steering into binary classes.
