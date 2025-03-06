@@ -4,6 +4,7 @@ import joblib
 import tensorflow as tf
 
 file_path = 'data/Atit(all)/'
+model_path = 'models/model_v0.3.1/'
 
 # Load saved model and scaler.
 model = tf.keras.models.load_model('rnn_model.h5')
