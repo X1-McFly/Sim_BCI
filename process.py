@@ -7,7 +7,7 @@ from scipy.fft import fft
 from compute_fft import compute_fft
 
 # Set the folder where all files are located.
-data_folder = "data\Atit(Session1)"  # Change to your folder path
+data_folder = "data/Atit(all)"  # Change to your folder path
 
 # Define file patterns for EEG and accessory (wheel) files.
 eeg_pattern = os.path.join(data_folder, "OpenBCI-RAW-*.txt")

@@ -3,6 +3,8 @@ import pandas as pd
 import time
 from numpy.lib.stride_tricks import sliding_window_view
 
+file_path = 'data/Atit(all)/'
+
 def compute_fft():
     # Parameters
     WINDOW_SIZE = 200  # Number of rows per FFT window (e.g., one second of data)
@@ -14,7 +16,7 @@ def compute_fft():
     gamma_band = (30, 100) # Gamma: 30–100 Hz
 
     # Load the cleaned data (make sure cleaned_data.csv is in your working directory)
-    df = pd.read_csv('merged_data.csv')
+    df = pd.read_csv(f'{file_path}merged_data.csv')
     print("Data loaded. Total rows:", len(df))
 
     # Ensure that the FFT columns exist (initialize if missing)
@@ -107,5 +109,8 @@ def compute_fft():
     df = df.iloc[WINDOW_SIZE:].reset_index(drop=True)
 
     # Save the updated DataFrame back to cleaned_data.csv.
-    df.to_csv('final_data.csv', index=False)
+    df.to_csv(f'{file_path}final_data.csv', index=False)
     print("Updated final_data.csv with computed Alpha, Beta, and Gamma FFT columns.")
+
+if __name__ == "__main__":
+          compute_fft()
