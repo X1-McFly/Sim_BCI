@@ -1,2 +1,5 @@
 .env
+/env
 /data
+/old/code/machine_learning_test/eeg-motor-movementimagery-dataset-1.0.0
+.gitignore

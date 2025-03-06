@@ -1,0 +1,17 @@
+/var/lib/cloud9/common/Makefile:28: MODEL=TI_AM335x_BeagleBone_Black,TARGET=gpio.pru0,COMMON=/var/lib/cloud9/common
+/var/lib/cloud9/common/Makefile:147: GEN_DIR=/tmp/cloud9-examples,CHIP=am335x,PROC=pru,PRUN=0,PRU_DIR=/sys/class/remoteproc/remoteproc1,EXE=.out
+-    Stopping PRU 0
+/bin/sh: 1: echo: echo: I/O error
+Cannot stop 0
+CC  gpio.pru0.c
+"/var/lib/cloud9/common/prugpio.h", line 53: warning #1181-D: #warning directive: "Found am335x"
+LD  /tmp/cloud9-examples/gpio.pru0.o
+-   copying firmware file /tmp/cloud9-examples/gpio.pru0.out to /lib/firmware/am335x-pru0-fw
+write_init_pins.sh
+writing "out" to "/sys/class/gpio/gpio30/direction"
+-    Starting PRU 0
+MODEL   = TI_AM335x_BeagleBone_Black
+PROC    = pru
+PRUN    = 0
+PRU_DIR = /sys/class/remoteproc/remoteproc1
+rm /tmp/cloud9-examples/gpio.pru0.o

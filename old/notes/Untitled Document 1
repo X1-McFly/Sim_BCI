@@ -1,0 +1,20 @@
+FPGA:
+Skills for long-term success in neuro-tech/AI
+Would make it easier for commercialization over the jetson modules.
+could sell the fpga design as an ASIC to biotech companies
+
+Plug the device into a computer to train the device
+One the inference of the brain signals is accurate, code it into the FPGA
+
+design health algorithms for use on a biocomputer that periodically scans brainwaves to track mental and neural health, especially in periods of intense stimulation and adverse conditions, i.e. heightened heart rate.
+
+ERRORs: 
+```
+Elapsed: 9.43854 ms, FPS: 105.949
+terminate called after throwing an instance of 'std::invalid_argument'
+  what():  stoi
+Aborted
+```
+```
+An error occurred: [Errno 98] Address already in use
+```

@@ -1,0 +1,8 @@
+Host:
+iptables --table nat --append POSTROUTING --out-interface wlo1 -j MASQUERADE
+iptables --append FORWARD --in-interface enx8030dc90712c -j ACCEPT
+
+
+BBB:
+sudo route add default gw 192.168.7.1
+

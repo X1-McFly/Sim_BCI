@@ -1,0 +1,89 @@
+The brain consists of 3 major components:
+	
+	_Cerebrum--the largest part of the brain with gray 
+	matter on the outside, where the sulci resides, and
+	white matter on the inside.
+
+	_Cerebellum--Coordinates voluntary muscle movements
+	and maintains subconscious physical functions.
+
+	_Brainstem--Connects the cerebrum with the spinal
+	cord.
+
+The Cerebrum and its major components:
+	
+	_Frontal Lobe--Located in the front of the brain,
+	being the largest lobe, the frontal lobe is 
+	involved in:
+		-Personality Characteristics
+		-Decision-Making
+		-Movement
+		-Smell
+		-Speech (Broca's Area)
+	
+	_Parietal Lobe--Located in the middle of the brain.
+	The parietal lobe is involved in:
+		-Spatial Relationships
+		-Pain/Sense of touch
+		-Language (Wernicke's area)
+
+	_Occipital Lobe--The occipital lobe is located in
+	the back of the brain and is involved with vision
+
+	_Temporal Lobe--Located on either side of the 
+	brain, the temporal lobe is involved in:
+		-Short-term memory
+		-Speech
+		-Musical Rythm
+		-Smell
+
+Areas of Interest(Brodmann Areas or 10/20 sites):
+
+	_Frontal Pole (FP): FPz, FP1, FP2
+	Associated with executive functions, decision
+	-making, and social behavior.
+
+	_Frontal (F): F7/F8 and F3/F4
+	Involved in higher cognitive functions such as 
+	problem-solving, attention, and working memory
+
+	_Central (C): C3/C4 and Cz
+	These sites are linked to motor control, sensory 
+	processing, and body awareness. They help 
+	facilitate movement, coordination, and the 
+	integration of sensory information, enabling us to 
+	navigate the physical world.
+
+	Occipital (O): O1/O2 and Oz
+	O1 and O2 are associated with visual processing, 
+	perception, and object recognition.
+
+	Link: https://www.insightscc.com/blog/brodmann-areas-an-intro-guide-to-the-function-of-1020-sites
+
+Specific list of potential Brodmann areas of interest:
+	
+	1.  Fpz
+	2.  F3
+	3.  F4
+	4.  C3
+	5.  C4
+	6.  P3
+	7.  P4
+	8.  Pz
+	9.  O1
+	10. O2
+
+	A1/A2 as reference
+
+Notes on the 10/20 system:
+	Landmarks:
+		1. Nasion (bridge of nose)
+		2. Inion (back of skull)
+		3. Preauricular points (front of ears)
+	
+
+
+
+
+
+
