@@ -4,11 +4,11 @@ import joblib
 import tensorflow as tf
 
 file_path = 'data/Atit(all)/'
-model_path = 'models/model_v0.3.1/'
+model_path = 'models/model_v0.4/'
 
 # Load saved model and scaler.
-model = tf.keras.models.load_model('rnn_model.h5')
-scaler = joblib.load('scaler.save')
+model = tf.keras.models.load_model(f'{model_path}rnn_model.h5')
+scaler = joblib.load(f'{model_path}scaler.save')
 
 # Load cleaned data.
 df = pd.read_csv(f'{file_path}final_data.csv')
@@ -49,7 +49,7 @@ predicted_all = []
 actual_all = []
 
 print("\nStarting sequential real-time simulation...\n")
-step = 2010  # Adjust step size for simulation speed.
+step = 2015  # Adjust step size for simulation speed.
 for i in range(0, num_sequences, step):
     # Build a sequence from rows i to i+lookback.
     seq = features[i:i+lookback]
