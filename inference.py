@@ -3,8 +3,8 @@ import numpy as np
 import joblib
 import tensorflow as tf
 
-file_path = 'data/Atit(all)/'
-model_path = 'models/model_v0.4/'
+file_path = 'data/Atit(Session5)/'
+model_path = 'models/model_v0.5/'
 
 # Load saved model and scaler.
 model = tf.keras.models.load_model(f'{model_path}rnn_model.h5')
@@ -35,7 +35,7 @@ features = df[feature_cols].values
 actuals = df['Actual_Class'].values
 
 # Define lookback (same as training).
-lookback = 100
+lookback = 500
 if len(features) < lookback:
     raise ValueError("Not enough data for one sequence.")
 
@@ -49,7 +49,7 @@ predicted_all = []
 actual_all = []
 
 print("\nStarting sequential real-time simulation...\n")
-step = 2015  # Adjust step size for simulation speed.
+step = 1028  # Adjust step size for simulation speed.
 for i in range(0, num_sequences, step):
     # Build a sequence from rows i to i+lookback.
     seq = features[i:i+lookback]
@@ -70,12 +70,16 @@ for i in range(0, num_sequences, step):
     predicted_all.append(predicted_class)
     actual_all.append(actual_class)
     
-    # Log details.
-    print("Row {:>5}: Raw Steering: {:>6} | Actual: {:>6} | Predicted: {:>6}".format(
-        i + lookback, raw_steering, labels[actual_class], labels[predicted_class]
+    # Calculate running accuracy.
+    running_accuracy = np.mean(np.array(predicted_all) == np.array(actual_all))
+    
+    # Log details with running accuracy.
+    print("Row {:>5}: Raw Steering: {:>6} | Actual: {:>6} | Predicted: {:>6} | Running Accuracy: {:.2f}%".format(
+        i + lookback, raw_steering, labels[actual_class], labels[predicted_class],
+        running_accuracy * 100
     ))
 
-# Compute accuracy.
+# Final overall accuracy.
 predicted_all = np.array(predicted_all)
 actual_all = np.array(actual_all)
 overall_accuracy = np.mean(predicted_all == actual_all)

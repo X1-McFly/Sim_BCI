@@ -3,7 +3,7 @@ import pandas as pd
 import time
 from numpy.lib.stride_tricks import sliding_window_view
 
-file_path = 'data/Atit(all)/'
+file_path = 'data/Atit(Session5)/'
 
 def compute_fft():
     # Parameters
